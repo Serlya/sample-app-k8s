@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app
+  namespace: {{ .Values.sampleApp.meta.namespace }}
+  labels:
+    app: sample-app
+spec:
+  selector:
+    matchLabels:
+      app: sample-app
+  replicas: {{ .Values.sampleApp.meta.replicas }}
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec: 
+      containers:
+      - image: public.ecr.aws/i9r3h3l3/sample-app:{{ .Values.sampleApp.image.tag }}
+        name: sample-app
+        resources:
+          requests:
+            memory: {{ .Values.sampleApp.resources.requests.memory }}Gi
+            cpu: {{ .Values.sampleApp.resources.requests.cpu }}
+          limits:
+            memory: {{ .Values.sampleApp.resources.limits.memory }}Gi
+            cpu: {{ .Values.sampleApp.resources.limits.cpu }}
