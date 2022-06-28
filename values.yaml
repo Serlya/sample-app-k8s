@@ -16,5 +16,5 @@ sampleApp:
       cpu: 1
     limits:
       memory: 2
-      cpu: 2
+      cpu: 3
     targetAverageUtilization: 50
